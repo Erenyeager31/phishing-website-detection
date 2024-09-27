@@ -8,6 +8,10 @@ import socket
 import dns.resolver
 import time
 
+st.set_page_config(
+    page_title="✨ Phishing Website Detection ✨"
+)
+
 # Load the trained model and scaler from pickle files
 model_filename = 'phishing_website_detection_model.pkl'
 scaler_filename = 'scaler.pkl'
