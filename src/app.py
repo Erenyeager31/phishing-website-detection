@@ -21,12 +21,20 @@ model_filename = os.path.abspath(model_filename)
 scaler_filename = os.path.abspath(scaler_filename)
 
 # Load the model
-with open(model_filename, 'rb') as model_file:
-    model = pickle.load(model_file)
+try:
+    with open(model_filename, 'rb') as model_file:
+        model = pickle.load(model_file)
+except Exception as e:
+    st.error(f"Error loading the model from path: {model_filename}")
+    st.error(f"Error details: {str(e)}")
 
 # Load the scaler
-with open(scaler_filename, 'rb') as scaler_file:
-    scaler = pickle.load(scaler_file)
+try:
+    with open(scaler_filename, 'rb') as scaler_file:
+        scaler = pickle.load(scaler_file)
+except Exception as e:
+    st.error(f"Error loading the model from path: {scaler_filename}")
+    st.error(f"Error details: {str(e)}")    
 
 def extract_features(url):
     start_time = time.time()
