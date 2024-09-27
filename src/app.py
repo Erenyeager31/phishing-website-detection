@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 import pickle
 import tldextract
 from urllib.parse import urlparse
@@ -11,9 +12,19 @@ import time
 model_filename = 'phishing_website_detection_model.pkl'
 scaler_filename = 'scaler.pkl'
 
+# Construct the paths dynamically
+model_filename = os.path.join(os.path.dirname(__file__), '..', model_filename)
+scaler_filename = os.path.join(os.path.dirname(__file__), '..', scaler_filename)
+
+# Convert paths to absolute paths
+model_filename = os.path.abspath(model_filename)
+scaler_filename = os.path.abspath(scaler_filename)
+
+# Load the model
 with open(model_filename, 'rb') as model_file:
     model = pickle.load(model_file)
 
+# Load the scaler
 with open(scaler_filename, 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
 
